@@ -24,7 +24,7 @@ export default function EventForm(props) {
           />
         </label>
         <label>
-          Description{props.values.description}
+          Description
           <textarea
             type="textarea"
             name="description"

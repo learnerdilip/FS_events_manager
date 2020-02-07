@@ -30,6 +30,16 @@ export const createEvent = data => dispatch => {
     .catch(console.error);
 };
 
-export const loadEvent = () => {
-  
-}
+export const EVENT_FETCHED = "EVENT_FETCHED";
+const eventFetched = event => ({
+  type: EVENT_FETCHED,
+  payload: event
+});
+export const loadEvent = id => (dispatch, getState) => {
+  if (getState().events) return;
+  request(`${baseUrl}/event/${id}`)
+    .then(response => {
+      dispatch(eventFetched(response.body));
+    })
+    .catch(console.error);
+};

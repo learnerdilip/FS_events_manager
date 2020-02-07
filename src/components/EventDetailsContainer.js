@@ -8,10 +8,19 @@ class EventDetailsContainer extends React.Component {
     this.props.loadEvent(Number(this.props.match.params.id));
   }
   render() {
-    return <EventDetails event={this.props.event} />;
+    const currentPost = this.props.event.find(
+      post => post.id === parseInt(this.props.match.params.id)
+    );
+    return (
+      <div>
+        <EventDetails curr={currentPost} />
+      </div>
+    );
   }
 }
-const mapStateToProps = state => ({
-  event: state.event
-});
+const mapStateToProps = state => {
+  return {
+    event: state.eventReducer
+  };
+};
 export default connect(mapStateToProps, { loadEvent })(EventDetailsContainer);

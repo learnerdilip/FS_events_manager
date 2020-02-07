@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import { connect } from "react-redux";
+import { loadEvent } from "../actions/events";
 
 export default class EventsList extends Component {
   render() {
@@ -10,7 +11,10 @@ export default class EventsList extends Component {
         <ul>
           {this.props.events.map(event => {
             return (
-              <Link to="">
+              <Link
+                onClick={() => loadEvent(event.id)}
+                to={`/event/${event.id}`}
+              >
                 <li>{event.description}</li>
               </Link>
             );

@@ -6,8 +6,12 @@ export default function eventReducer(state = initialState, action) {
       if (!state) {
         return state;
       } else {
-        return action.payload;
+        return [...state, ...action.payload];
       }
+    }
+    case "EVENT_FETCHED": {
+      const currentPayload = action.payload;
+      return [currentPayload];
     }
     default: {
       return state;
