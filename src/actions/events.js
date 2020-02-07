@@ -43,3 +43,22 @@ export const loadEvent = id => (dispatch, getState) => {
     })
     .catch(console.error);
 };
+
+const delE = id => {
+  console.log(id, "Need to update the state");
+  return {
+    type: "EVENT_DELETE_SUCCESS",
+    payload: id
+  };
+};
+
+export const deleteEvent = id => dispatch => {
+  request.del(`${baseUrl}/event/${id}`).then(response => {
+    if (response.body.success) {
+      console.log("DELETE successful");
+      dispatch(delE(id));
+    } else {
+      return;
+    }
+  });
+};

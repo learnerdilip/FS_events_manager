@@ -13,6 +13,10 @@ export default function eventReducer(state = initialState, action) {
       const currentPayload = action.payload;
       return [currentPayload];
     }
+    case "EVENT_DELETE_SUCCESS": {
+      // console.log("I am in reducer to delete", action.payload);
+      return [...state];
+    }
     default: {
       return state;
     }

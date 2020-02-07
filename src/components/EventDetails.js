@@ -1,6 +1,8 @@
 import React from "react";
-
+import { useDispatch } from "react-redux";
+import { deleteEvent } from "../actions/events";
 export default function EventDetails(props) {
+  const dispatch = useDispatch();
   console.log("EVENT DETAILS ARRAY", props);
   return !props.curr ? (
     <h1>Loading...</h1>
@@ -10,14 +12,10 @@ export default function EventDetails(props) {
         <h1>{props.curr.name}</h1>
         <i>{props.curr.date}</i>
         <p>{props.curr.description}</p>
-        <button onClick={() => deletePost(props.curr.id)}>
+        <button onClick={() => dispatch(deleteEvent(props.curr.id))}>
           Delete this Post
         </button>
       </div>
     </div>
   );
 }
-
-const deletePost = id => {
-  console.log("You want to del me?", id);
-};
