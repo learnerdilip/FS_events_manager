@@ -7,13 +7,14 @@ class EventDetailsContainer extends React.Component {
   componentDidMount() {
     this.props.loadEvent(Number(this.props.match.params.id));
   }
+
   render() {
     const currentPost = this.props.event.find(
       post => post.id === parseInt(this.props.match.params.id)
     );
     return (
       <div>
-        <EventDetails curr={currentPost} />
+        <EventDetails curr={currentPost} history={this.props.history} />
       </div>
     );
   }
