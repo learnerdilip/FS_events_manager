@@ -1,28 +1,40 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { Component } from "react";
 import { deleteEvent } from "../actions/events";
-import { Redirect } from "react-router";
-export default function EventDetails(props) {
-  const dispatch = useDispatch();
-  console.log("EVENT DETAILS ARRAY", props);
-  return !props.curr ? (
-    <h1>Loading...</h1>
-  ) : (
-    <div>
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+class EventDetails extends Component {
+  render() {
+    return this.props.state.length !== 1 ? (
+      <h1>Loading...</h1>
+    ) : (
       <div>
-        <h1>{props.curr.name}</h1>
-        <i>{props.curr.date}</i>
-        <p>{props.curr.description}</p>
-        <button
-          onClick={() => {
-            dispatch(deleteEvent(props.curr.id));
-            props.history.push("/event");
-          }}
-        >
-          Delete this Post
-        </button>
-        <button>Edit</button>
+        <div>
+          <h1>{this.props.state[0].name}</h1>
+          <i>{this.props.state[0].date}</i>
+          <p>{this.props.state[0].description}</p>
+          <button
+            onClick={() => {
+              deleteEvent(this.props.state[0].id);
+              this.props.history.push("/event");
+            }}
+          >
+            Delete this Post
+          </button>
+          <br />
+          <br />
+          <Link to="/">Go Home</Link> <p> </p>{" "}
+          <Link to="/event">To Posts Page</Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+function mapStateToProps(reduxState) {
+  return {
+    state: reduxState.eventReducer
+  };
+}
+
+export default connect(mapStateToProps)(EventDetails);

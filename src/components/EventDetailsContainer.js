@@ -14,7 +14,11 @@ class EventDetailsContainer extends React.Component {
     );
     return (
       <div>
-        <EventDetails curr={currentPost} history={this.props.history} />
+        <EventDetails
+          // edit={this.state.editMode}
+          history={this.props.history}
+        />
+        {/* <button onClick={() => this.onEdit()}>EDIT</button> */}
       </div>
     );
   }

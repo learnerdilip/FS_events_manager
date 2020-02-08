@@ -30,18 +30,11 @@ export const createEvent = data => dispatch => {
     .catch(console.error);
 };
 
-export const EVENT_FETCHED = "EVENT_FETCHED";
-const eventFetched = event => ({
-  type: EVENT_FETCHED,
-  payload: event
-});
-export const loadEvent = id => (dispatch, getState) => {
-  if (getState().events) return;
-  request(`${baseUrl}/event/${id}`)
-    .then(response => {
-      dispatch(eventFetched(response.body));
-    })
-    .catch(console.error);
+export const loadEvent = id => {
+  return {
+    type: "EVENT_FETCHED",
+    payload: id
+  };
 };
 
 const delE = id => {
@@ -55,10 +48,18 @@ const delE = id => {
 export const deleteEvent = id => dispatch => {
   request.del(`${baseUrl}/event/${id}`).then(response => {
     if (response.body.success) {
-      console.log("DELETE successful");
+      // console.log("DELETE successful");
       dispatch(delE(id));
     } else {
       return;
     }
   });
 };
+
+// export const updateEvent = (eventId, data) => {
+//   return {
+//     type: "event/UPDATE",
+//     payload: eventId,
+//     data
+//   };
+// };

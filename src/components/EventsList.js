@@ -15,11 +15,12 @@ export default class EventsList extends Component {
                 onClick={() => loadEvent(event.id)}
                 to={`/event/${event.id}`}
               >
-                <li>{event.description}</li>
+                <li>{event.name}</li>
               </Link>
             );
           })}
         </ul>
+        <Link to="/">HOME</Link>
       </div>
     );
   }

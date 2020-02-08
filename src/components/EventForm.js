@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function EventForm(props) {
-  console.log("THE FORM COMP", props);
   return (
     <div>
       <form onSubmit={event => props.onSubmit(event)}>
