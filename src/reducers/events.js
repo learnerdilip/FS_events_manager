@@ -16,6 +16,10 @@ export default function eventReducer(state = initialState, action) {
     case "EVENT_DELETE_SUCCESS": {
       return [...state];
     }
+    case "event/UPDATE": {
+      //need to edit this
+      return [...state];
+    }
     default: {
       return [...state];
     }

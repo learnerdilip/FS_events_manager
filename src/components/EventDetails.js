@@ -2,20 +2,26 @@ import React, { Component } from "react";
 import { deleteEvent } from "../actions/events";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import EventForm from "./EventForm";
 
 class EventDetails extends Component {
   render() {
-    return this.props.state.length !== 1 ? (
+    return this.props.event.length !== 1 ? (
       <h1>Loading...</h1>
+    ) : this.props.edit ? (
+      <EventForm
+        prevFormDetails={this.props.prevDetails}
+        event={this.props.event[0]}
+      />
     ) : (
       <div>
         <div>
-          <h1>{this.props.state[0].name}</h1>
-          <i>{this.props.state[0].date}</i>
-          <p>{this.props.state[0].description}</p>
+          <h1>{this.props.event[0].name}</h1>
+          <i>{this.props.event[0].date}</i>
+          <p>{this.props.event[0].description}</p>
           <button
             onClick={() => {
-              deleteEvent(this.props.state[0].id);
+              deleteEvent(this.props.event[0].id);
               this.props.history.push("/event");
             }}
           >
@@ -33,7 +39,7 @@ class EventDetails extends Component {
 
 function mapStateToProps(reduxState) {
   return {
-    state: reduxState.eventReducer
+    event: reduxState.eventReducer
   };
 }
 

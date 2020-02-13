@@ -9,7 +9,7 @@ export default function EventForm(props) {
           <input
             type="text"
             name="name"
-            value={props.values.name}
+            value={props.event.name}
             onChange={event => props.onChange(event)}
           />
         </label>
@@ -18,7 +18,7 @@ export default function EventForm(props) {
           <input
             type="date"
             name="date"
-            value={props.values.date}
+            value={props.event.date}
             onChange={event => props.onChange(event)}
           />
         </label>
@@ -27,7 +27,7 @@ export default function EventForm(props) {
           <textarea
             type="textarea"
             name="description"
-            value={props.values.description}
+            value={props.event.description}
             onChange={event => props.onChange(event)}
           />
         </label>

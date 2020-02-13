@@ -56,10 +56,10 @@ export const deleteEvent = id => dispatch => {
   });
 };
 
-// export const updateEvent = (eventId, data) => {
-//   return {
-//     type: "event/UPDATE",
-//     payload: eventId,
-//     data
-//   };
-// };
+export const updateEvent = (eventId, data) => {
+  return {
+    type: "event/UPDATE",
+    payload: eventId,
+    data
+  };
+};
